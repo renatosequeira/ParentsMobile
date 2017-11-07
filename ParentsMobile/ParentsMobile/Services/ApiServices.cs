@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ParentsMobile.Models;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace ParentsMobile.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task LoginUserAsync(string userName, string password)
+        public async Task<string> LoginUserAsync(string userName, string password)
         {
             var keyValues = new List<KeyValuePair<string, string>>
             {
@@ -53,9 +54,17 @@ namespace ParentsMobile.Services
             var client = new HttpClient();
             var response = await client.SendAsync(request);
 
-            var content = await response.Content.ReadAsStringAsync();
+            var jwt = await response.Content.ReadAsStringAsync();
 
-            Debug.WriteLine(content);
+            //jwt contem o accessToken, mas não é o AccessToken
+
+            JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
+
+            var accessToken = jwtDynamic.Value<string>("access_token");
+
+            Debug.WriteLine(jwt);
+
+            return accessToken;
         }
 
         public async Task<List<Childrens>> GetIdeasAsync(string accessToken)

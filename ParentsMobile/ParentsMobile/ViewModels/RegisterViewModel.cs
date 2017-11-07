@@ -1,4 +1,5 @@
-﻿using ParentsMobile.Services;
+﻿using ParentsMobile.Helpers;
+using ParentsMobile.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,9 @@ namespace ParentsMobile.ViewModels
             {
                 return new Command(async () => {
                     var isSuccess = await apiServices.RegisterUserAsync(Email, Password, ConfirmPassword);
+
+                    Settings.Username = Email;
+                    Settings.Password = Password;
 
                     if (isSuccess)
                     {

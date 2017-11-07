@@ -1,4 +1,5 @@
-﻿using ParentsMobile.Services;
+﻿using ParentsMobile.Helpers;
+using ParentsMobile.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,16 @@ namespace ParentsMobile.ViewModels
             {
                 return new Command(async() =>
                 {
-                    await apiServices.LoginUserAsync(UserName, Password);
+                    var accessToken = await apiServices.LoginUserAsync(UserName, Password);
+                    Settings.AccessToken = accessToken;
                 });
             }
+        }
+
+        public LoginViewModel()
+        {
+            UserName = Settings.Username;
+            Password = Settings.Password;
         }
     }
 }

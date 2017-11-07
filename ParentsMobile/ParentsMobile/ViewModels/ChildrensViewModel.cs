@@ -1,4 +1,5 @@
-﻿using ParentsMobile.Models;
+﻿using ParentsMobile.Helpers;
+using ParentsMobile.Models;
 using ParentsMobile.Services;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace ParentsMobile.ViewModels
     {
         ApiServices apiServices = new ApiServices();
 
-        public string AccessToken { get; set; }
+        //public string AccessToken { get; set; }
 
         public List<Childrens> _childrens { get; set; }
 
@@ -36,7 +37,8 @@ namespace ParentsMobile.ViewModels
             {
                 return new Command(async () =>
                 {
-                    _childrens = await apiServices.GetIdeasAsync(AccessToken);
+                    var accessToken = Settings.AccessToken;
+                    Childrens = await apiServices.GetIdeasAsync(accessToken);
                 });
             }
         }
