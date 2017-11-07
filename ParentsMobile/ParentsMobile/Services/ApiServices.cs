@@ -2,6 +2,7 @@
 using ParentsMobile.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -32,6 +33,29 @@ namespace ParentsMobile.Services
             var response = await client.PostAsync("http://childcare.outstandservices.pt/api/Account/Register", content);
 
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task LoginUserAsync(string userName, string password)
+        {
+            var keyValues = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("username",userName),
+                new KeyValuePair<string, string>("password",password),
+                new KeyValuePair<string, string>("grant_type","password")
+            };
+
+            var request = new HttpRequestMessage(
+                HttpMethod.Post, 
+                "http://childcare.outstandservices.pt/Token");
+
+            request.Content = new FormUrlEncodedContent(keyValues);
+
+            var client = new HttpClient();
+            var response = await client.SendAsync(request);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            Debug.WriteLine(content);
         }
     }
 }

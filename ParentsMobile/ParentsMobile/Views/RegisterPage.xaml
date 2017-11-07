@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ParentsAppMobile.View.RegisterPage"
-             xmlns:viewModels="clr-namespace:ParentsAppMobile.ViewModels;assembly=ParentsAppMobile">
+             x:Class="ParentsMobile.Views.RegisterPage"
+             xmlns:viewModels="clr-namespace:ParentsMobile.ViewModels;assembly=ParentsMobile">
 
     <ContentPage.BindingContext>
         <viewModels:RegisterViewModel/>
@@ -24,11 +24,14 @@
             Command="{Binding RegisterCommand}"
             Text="Register"/>
 
-        <Label
-            Text="{Binding Message}"/>
+        <Button
+            Clicked="Button_Clicked"
+            Text="Login"/>
+
 
         <Label
             Text="{Binding Message}"/>
+
     </StackLayout>
 
 </ContentPage>

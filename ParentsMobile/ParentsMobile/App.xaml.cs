@@ -1,4 +1,4 @@
-﻿using ParentsAppMobile.View;
+﻿using ParentsMobile.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace ParentsMobile
         {
             InitializeComponent();
 
-            MainPage = new RegisterPage();
+            MainPage = new NavigationPage(new RegisterPage());
         }
 
         protected override void OnStart()
