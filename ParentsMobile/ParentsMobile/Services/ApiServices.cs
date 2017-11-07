@@ -57,5 +57,17 @@ namespace ParentsMobile.Services
 
             Debug.WriteLine(content);
         }
+
+        public async Task<List<Childrens>> GetIdeasAsync(string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens");
+
+            var childrens = JsonConvert.DeserializeObject<List<Childrens>>(json);
+
+            return childrens;
+        }
     }
 }

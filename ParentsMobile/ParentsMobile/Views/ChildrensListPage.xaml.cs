@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ParentsMobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class ChildrensListPage : ContentPage
     {
-        public LoginPage()
+        public ChildrensListPage()
         {
             InitializeComponent();
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ChildrensListPage());
         }
     }
 }

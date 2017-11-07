@@ -12,15 +12,22 @@
         Orientation="Vertical">
 
         <Entry
-            Text="{Binding UserName}"/>
+            Text="{Binding UserName}"
+            Placeholder="Email"/>
 
         <Entry
             Text="{Binding Password}"
-            IsPassword="True"/>
+            IsPassword="True"
+            Placeholder="Password"/>
 
         <Button
             Text="Login"
             Command="{Binding LoginCommand}"/>
+
+
+        <Button
+            Text="View Childrens"
+            Clicked="Button_Clicked"/>
 
     </StackLayout>
     
