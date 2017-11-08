@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentsMobile.Views.AddNewChildrenPage"
+             xmlns:viewModels="clr-namespace:ParentsMobile.ViewModels;assembly=ParentsMobile">
+
+    <ContentPage.BindingContext>
+        <viewModels:AddNewChildrenViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout
+        Orientation="Vertical">
+
+        <Entry Text="{Binding FirstName}"
+               Placeholder="First Name"/>
+
+        <Entry Text="{Binding MiddleName}"
+               Placeholder="Middle Name"/>
+
+        <Entry Text="{Binding LastName}"
+               Placeholder="Last Name"/>
+
+        <Entry Text="{Binding CC}"
+               Placeholder="Identity Card"/>
+
+        <Entry Text="{Binding FamilyDoctor}"
+               Placeholder="Family Doctor"/>
+
+        <Entry Text="{Binding BloodType}"
+               Placeholder="Blood Type"/>
+
+        <Button 
+            Command="{Binding AddChildren}"
+            Text="Save Children"/>
+       
+        
+    </StackLayout>
+   
+</ContentPage>

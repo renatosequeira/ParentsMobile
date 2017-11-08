@@ -15,13 +15,13 @@ namespace ParentsMobile.ViewModels
 {
     public class ChildrensViewModel : INotifyPropertyChanged
     {
-        ApiServices apiServices = new ApiServices();
+        private readonly ApiServices _apiServices = new ApiServices();
 
         //public string AccessToken { get; set; }
 
-        public List<Childrens> _childrens { get; set; }
+        private List<Childrens> _childrens;
 
-        public List<Childrens> Childrens
+        public List<Childrens> ChildrenList
         {
             get { return _childrens; }
             set
@@ -38,7 +38,7 @@ namespace ParentsMobile.ViewModels
                 return new Command(async () =>
                 {
                     var accessToken = Settings.AccessToken;
-                    Childrens = await apiServices.GetIdeasAsync(accessToken);
+                    ChildrenList = await _apiServices.GetChildrenAsync(accessToken);
                 });
             }
         }

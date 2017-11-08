@@ -45,9 +45,7 @@ namespace ParentsMobile.Services
                 new KeyValuePair<string, string>("grant_type","password")
             };
 
-            var request = new HttpRequestMessage(
-                HttpMethod.Post, 
-                "http://childcare.outstandservices.pt/Token");
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://childcare.outstandservices.pt/Token");
 
             request.Content = new FormUrlEncodedContent(keyValues);
 
@@ -65,18 +63,36 @@ namespace ParentsMobile.Services
             Debug.WriteLine(jwt);
 
             return accessToken;
+
+
         }
 
-        public async Task<List<Childrens>> GetIdeasAsync(string accessToken)
+        public async Task<List<Childrens>> GetChildrenAsync(string accessToken)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
+            //var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens/ForCurrentParent");
             var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens");
 
-            var childrens = JsonConvert.DeserializeObject<List<Childrens>>(json);
+            var childrenList = JsonConvert.DeserializeObject<List<Childrens>>(json);
 
-            return childrens;
+            return childrenList;
+        }
+
+        public async Task PostChildrenAsync(Childrens children, string accessToken)
+        {
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var json = JsonConvert.SerializeObject(children);
+
+            HttpContent content = new StringContent(json);
+
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.PostAsync("http://childcare.outstandservices.pt/api/Childrens", content);
         }
     }
 }

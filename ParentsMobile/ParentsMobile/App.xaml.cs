@@ -23,9 +23,12 @@ namespace ParentsMobile
         {
             if (!string.IsNullOrEmpty(Settings.AccessToken))
             {
+                //se o token existir
                 MainPage = new NavigationPage(new ChildrensListPage());
-            }else if(!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
+            }
+            else if (!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
             {
+                //se o user e a pass forem existentes
                 MainPage = new NavigationPage(new LoginPage());
             }
             else
