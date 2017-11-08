@@ -72,8 +72,8 @@ namespace ParentsMobile.Services
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            //var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens/ForCurrentParent");
-            var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens");
+            var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens/FromCurrentParent");
+            //var json = await client.GetStringAsync("http://childcare.outstandservices.pt/api/Childrens");
 
             var childrenList = JsonConvert.DeserializeObject<List<Childrens>>(json);
 
@@ -93,6 +93,29 @@ namespace ParentsMobile.Services
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             var response = await client.PostAsync("http://childcare.outstandservices.pt/api/Childrens", content);
+        }
+
+        public async Task EditChildrenAsync(Childrens children, string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var json = JsonConvert.SerializeObject(children);
+
+            HttpContent content = new StringContent(json);
+
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.PutAsync("http://childcare.outstandservices.pt/api/Childrens/" + children.Id, content);
+
+        }
+
+        public async Task DeleteChildrenAsync(int id, string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await client.DeleteAsync("http://childcare.outstandservices.pt/api/Childrens/" + id);
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParentsMobile.Views.EditChildrenPage"
+             xmlns:viewModels="clr-namespace:ParentsMobile.ViewModels;assembly=ParentsMobile">
+
+    <!--<ContentPage.BindingContext>
+        <viewModels:EditChildrenViewModel/>
+    </ContentPage.BindingContext>-->
+
+    <StackLayout
+        Orientation="Vertical">
+
+        <Entry Text="{Binding Childrens.FirstName}"
+               Placeholder="First Name"/>
+
+        <Entry Text="{Binding Childrens.MiddleName}"
+               Placeholder="Middle Name"/>
+
+        <Entry Text="{Binding Childrens.LastName}"
+               Placeholder="Last Name"/>
+
+        <Entry Text="{Binding Childrens.CC}"
+               Placeholder="Identity Card"/>
+
+        <Entry Text="{Binding Childrens.FamilyDoctor}"
+               Placeholder="Family Doctor"/>
+
+        <Entry Text="{Binding Childrens.BloodType}"
+               Placeholder="Blood Type"/>
+
+        <Button 
+            Command="{Binding EditCommand}"
+            Text="Edit Children"/>
+
+        <Button 
+            Command="{Binding DeleteCommand}"
+            Text="Delete Children"/>
+
+
+    </StackLayout>
+
+</ContentPage>

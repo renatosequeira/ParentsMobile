@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParentsMobile.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,12 @@ namespace ParentsMobile.Views
         private async void GoToAddChildrenPage(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new AddNewChildrenPage());
+        }
+
+        private async void ChildrenListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var children = e.Item as Childrens;
+           await Navigation.PushAsync(new EditChildrenPage(children));
         }
     }
 }

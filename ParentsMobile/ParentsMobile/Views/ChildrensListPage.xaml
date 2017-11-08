@@ -17,11 +17,12 @@
         <Button Clicked="GoToAddChildrenPage"
                 Text="Add Children"/>
 
-        <ListView ItemsSource="{Binding ChildrenList}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding ChildrenList}" HasUnevenRows="True"
+                  ItemTapped="ChildrenListView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
+                        <StackLayout Padding="20,10">
                             <Label Text="{Binding FirstName}"/>
                             <Label Text="{Binding LastName}"/>
                             <Label Text="{Binding CC}"/>
